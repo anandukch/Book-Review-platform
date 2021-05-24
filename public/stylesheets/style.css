@@ -431,7 +431,7 @@ flex-direction: column;
   border-radius: 3px;
   background-color: orangered;
   color: white;
-  margin-left: 249px;
+  margin-left: 306px;
 }
 
 @media screen and (max-width: 700px) {
@@ -551,5 +551,11 @@ flex-direction: column;
 .profile_info label {
   
   margin: 2px;
+}
+.book{
+      padding-bottom: 20px;
+}
+#add_form {
+  margin-bottom: 76px;
 }
 }
