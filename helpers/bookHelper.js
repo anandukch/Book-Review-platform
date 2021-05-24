@@ -32,7 +32,7 @@ module.exports = {
       let books = await db
         .get()
         .collection(collection.BOOK_COLLECTION)
-        .find(userid)
+        .find({userId:ObjectID(userid)})
         .toArray();
       resolve(books);
     });

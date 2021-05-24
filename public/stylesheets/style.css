@@ -491,7 +491,7 @@ flex-direction: column;
     justify-content: space-evenly;
   }
   .books_background {
-    
+    margin-bottom: 29px;
     align-items: center;
     width: 100%;
 }
