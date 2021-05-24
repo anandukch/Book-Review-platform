@@ -1,0 +1,29 @@
+
+  
+<section >
+  <div class="books_template">
+    <div class="books_background">
+
+      {{#each books}}
+        <div class="book" id="main">
+          <div class="book_img" style="width:100%;">
+            <a href="/view-product/{{this._id}}"><img
+                src="/book-images/{{this._id}}.jpg"
+              /></a>
+          </div>
+          <div class="book_content">
+            <div class="book_title">{{this.title}}</div>
+            <div class="book_author"><span>by</span>~ {{this.author}}</div>
+            <div class="genre"><span style="font-size: 16px">Genre</span> : {{this.genre}}</div>
+            {{!-- <select name="" id="drop">
+              <option value="">want to read</option>
+            </select> --}}
+            
+          </div>
+          
+        </div>
+        
+      {{/each}}
+    </div>
+  </div>
+</section>

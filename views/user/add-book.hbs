@@ -1,0 +1,43 @@
+<section style="z-index:-1">
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-6">
+        <h2 class="text-center">Add Book</h2>
+        <form action="/add-book" method="POST" enctype="multipart/form-data">
+        <label for="">ISBN Number</label>
+          <input type="text" name="ibn" class="form-control" />
+          <label for="">Book title</label>
+          <input type="text" name="title" class="form-control" required />
+
+          
+
+          <label for="">Genre </label>
+          <input type="text" name="genre" class="form-control" required/>
+
+          <label for="">Description</label>
+          <input type="text" name="description" class="form-control" required/>
+          <label for="">Autor name</label>
+          <input type="text" name="author" class="form-control" required/>
+          <label for="">Language </label>
+          <input type="text" name="language" class="form-control" required/>
+          <label for="">Year of publication </label>
+          <input type="text" name="year" class="form-control" required/>
+          <label for="">Link to purchase </label>
+          <input type="text" name="link" class="form-control" required/>
+          <label for="">Image</label>
+                    <img src="/product-images/{{product._id}}.jpg" alt="" style="width: 100px;height:auto" id="imgView">
+          
+          <input type="file" class="form-control" name="image" onchange="viewImage(event)" required/>
+
+          <button type="submit" class="btn btn-success mt-4">submit</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</section>
+<script>
+    function viewImage(event){
+        document.getElementById('imgView').src=URL.createObjectURL(event.target.files[0])
+    }
+</script>

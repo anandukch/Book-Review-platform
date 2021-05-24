@@ -1,0 +1,84 @@
+<section>
+  <div class="container">
+    <table class="table mt-5">
+      <thead>
+        <tr>
+          <th scope="col">Item</th>
+          <th>Title</th>
+          <th>Quantity</th>
+        </tr>
+
+      </thead>
+      <tbody>
+        {{#each products}}
+          <tr>
+
+            <td><a href="/view-product/{{this.product._id}}"><img
+                  style="width: 70px;height:70px"
+                  src="/book-images/{{this.product._id}}.jpg"
+                  alt=""
+                /></a></td>
+            <td>{{this.product.name}}</td>
+            <td>Rs.{{this.product.price}}</td>
+
+            <td>
+              <button
+                class="cart-item-count mr-3"
+                onclick="changeQuantity('{{this._id}}','{{this.product._id}}',-1)"
+              >-</button>
+              <span id="{{this.product._id}}">{{this.rate}}</span>
+              <button
+                class="cart-item-count ml-3"
+                onclick="changeQuantity('{{this._id}}','{{this.product._id}}',1)"
+              >+</button>
+
+            </td>
+            <td>
+              <a
+                href=""
+                class="btn btn-danger"
+                onclick="remove('{{this._id}}','{{this.product._id}}')"
+              >Remove</a>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    <hr />
+    <div class="float-right pr-5">
+      <h3 class="float-left mr-5">total</h3>
+      <a
+        href="/place-order"
+        class="mt-3 btn btn-success"
+        style="width: 100%;"
+      ><b>place-order</b></a>
+    </div>
+  </div>
+</section>
+<script>
+
+ function changeQuantity(cartId, proId, count) {
+     console.log('c')
+        let quantity = parseInt(document.getElementById(proId).innerHTML)
+        $.ajax({
+            url: '/change-product-quantity',
+            data: {
+                cart: cartId,
+                product: proId,
+                count: count,
+                quantity: quantity
+            },
+            method: 'post',
+            success: (response) => {
+                if (response.removeProduct) {
+                    alert('product removed')
+                    location.reload()
+                } else {
+                    document.getElementById(proId).innerHTML = quantity + count
+                }
+
+            }
+        })
+    }
+  
+</script>

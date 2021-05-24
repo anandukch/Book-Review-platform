@@ -1,0 +1,99 @@
+
+<section>
+  <div class="view_book">
+      <div class="vb_main_header">
+        <div class="vb_img">
+          <img src="/book-images/{{book._id}}.jpg" alt="">
+          
+        </div>
+        <div class="vb_content">
+          <div class="vb_book_title">
+              {{book.title}}
+          </div>
+         <h2 class="vb_book_author">
+                 by {{book.author}}
+         </h2>
+          <div class="rating_heart">
+            <div class="rate_option">
+          {{#if status}}
+              <i class="fas fa-heart" id="thumb" style="color: rgb(255, 8, 0);font-size:20px" onclick="changeQuantity('{{book._id}}','{{user._id}}')"></i>
+            {{else}}
+              <i class="fas fa-heart" id="thumb" style="color: rgb(138, 136, 136)85, 184, 184);" onclick="changeQuantity('{{book._id}}','{{user._id}}')"></i>
+            {{/if}}
+
+             <span id="{{book._id}}">{{sum}}</span>
+             
+    </div>
+          </div>
+          <div class="get_book"><a href="{{book.link}}">GET THE BOOK</a></div>
+        </div>
+
+      </div>
+      <div class="discription">
+        <h2 class="disc_head">
+          Sneak Peaks
+        </h2>
+        <div class="disc_content">
+            {{book.description}}
+        </div><hr>
+      </div>
+      <div class="comments">
+        <h2 style="border-bottom: 1px solid; margin-bottom:12px">Add your review</h2>
+        <form action="/comment/{{book._id}}" method="POST">
+      <input name="comment" id="" />
+      <button type="submit">post</button>
+    </form>
+        <ul class="comment">
+      {{#each m}}
+        
+        
+          <li>{{this.comment}}
+          </li>
+           
+        
+      {{/each}}
+      </ul>
+      </div>
+    </div>
+</section>
+
+<script>
+
+ function changeQuantity( bookId,userId, count) {
+   
+        let thumb=document.querySelector('#thumb');
+        let quantity = parseInt(document.getElementById(bookId).innerHTML)
+        console.log(quantity)
+        $.ajax({
+            url: '/change-rate',
+            data: {
+                
+               book: bookId,
+                user:userId,
+                count: count,
+                quantity: quantity
+            },
+            method: 'post',
+            success: (response) => {
+                if (response.status) { 
+ 
+                    thumb.style.color='blue'
+                    location.reload()
+                   
+                    
+                   
+                } else {
+                  
+                  
+                  
+                  thumb.style.color='black';
+                  location.reload()
+                    
+                }
+
+            }
+        })
+    };
+    
+</script>
+ {{!-- location.reload() --}}{{!-- document.getElementById(bookId).innerHTML = 0; --}}

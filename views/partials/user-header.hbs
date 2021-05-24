@@ -1,0 +1,84 @@
+
+<div class="nav" style="z-index: 400;">
+      <div class="top">
+        <div class="top_banner">
+          
+          <div class="title"><i class="fab fa-500px"></i>Summer Store Open</div>
+        </div>
+      </div>
+      <div class="bottom_nav">
+        <div class="nav_title">B<span style="color: #FDBAC1;">O</span><span style="color: #FC571D">O</span>KSTREET.<i class="fas fa-book" style="margin-left: 12px;"></i></div>
+        <div class="nav_contents">
+          <div class="nav_content">
+            <a href="/"><i class="fas fa-home"></i>
+            <p>HOME</a></p>
+          </div>
+          
+          <div class="nav_content">
+            <a href="/add-book"><i class="fas fa-folder-plus"></i>
+            <p>ADD BOOK</a></p>
+          </div >
+           <div class="addition">
+             {{#if user}}
+            <div class="nav_content">
+          <a href="/profile" ><i class="fas fa-user-circle" style="font-size: 30px;margin-top:10px" ></i></a>
+            
+          </div>
+         
+           {{else}}
+          <div class="nav_content">
+            <a href="/add-book"><i class="fas fa-sign-in-alt"style="margin-right:12px" ></i></i></a>
+            
+          </div>
+          {{/if}}
+          </div>
+          
+          
+
+        </div>
+         <div class="search_field"> 
+           <select name="" id="opt">
+             <option >Filter</option>
+            <option value="book_title">Book Title</option>
+            <option value="genre">Genre</option>
+            <option value="book_author">Author</option>
+          </select> 
+          <input  type="text" id="inp" value=""  oninput="changer()" placeholder="search for books">
+        </div>
+       
+        
+
+        <div class="bottom_right">
+          
+        {{#if user}}
+          <div class="in" onclick="confirm('Are you sure you want to LOGOUT')">
+            <a href="/logout">logout</a>
+             
+            
+          </div>
+          <a href="/logout" id="logout" onclick="confirm('Are you sure you want to LOGOUT')" ><i class="fas fa-sign-out-alt"style="font-size: 30px;margin-top:8px"></i></a>
+          <a href="/profile" id="pro"><i class="fas fa-user-circle" style="font-size: 30px;margin-top:10px" ></i></a>
+          {{else}}
+          <div class="in">
+            <a href="/login">login</a>
+          </div>
+           {{/if}}
+
+        </div>
+        
+      </div>
+      
+      <div class="side_bar">
+        <h1 style="transform: rotate(90deg);margin-left: -48px;margin-top: 152px;font-family: Elsie;font-weight: 900;display:flex">BOOK.STREET<i class="fas fa-book" style="margin-left: 12px;float:right"></i></h1>
+        
+
+
+    
+    
+
+      </div>
+      
+        </div>
+        
+    </div>
+    

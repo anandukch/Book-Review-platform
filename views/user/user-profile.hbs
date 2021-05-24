@@ -1,0 +1,54 @@
+<section>
+  <div class="profile">
+    <div class="profile_content">
+      <h2>Profile</h2>
+      <button id="v"><i class="fas fa-edit"></i>edit</button>
+
+      <div class="profile_info">
+          <form action="/profile" method="post">
+        <div><label for="">Name</label><input
+          id="s"
+          name="userName"
+          type="text"
+          value={{user.userName}}
+          disabled
+        /></div>
+        <div><label for="">Email</label><input
+          id="s"
+           name="email"
+          type="text"
+          value={{user.email}}
+          disabled
+        /></div>
+        <div><label for="">Mobile Number</label><input
+          id="s"
+           name="mb"
+          type="text"
+          value={{user.mb}}
+          disabled
+        /></div>
+        <button id="con" type="submit" onclick="confirm("confirm your changes")" style="padding: 10px;boder:none;outline:none; background-color:rgb(127, 170, 63)">Update</button></form>
+      </div>
+    </div><hr>
+     <h3>Uploaded books</h3>
+    <div class="recent_uploads">
+     
+      {{#each book}}
+      <div class="book_cover">
+        <a href="/view-product/{{this._id}}"><img src="/book-images/{{this._id}}.jpg" alt="" id="imgView" style="width: 100px;height:auto"></a>
+        
+      </div>
+      {{/each}}
+      
+
+    </div>
+  </div>
+  <script>
+    var btn = document.querySelector("#v");var con=document.querySelector("#con"); var btn1 =
+    document.querySelector("#n"); btn.addEventListener("click", () => { var inp
+    = document.querySelectorAll("#s"); inp.forEach((e)=>{ e.disabled=false });
+  con.style.display='inline';
+    }); 
+    
+  </script>
+</section>
