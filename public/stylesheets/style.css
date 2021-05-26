@@ -149,19 +149,18 @@ body {
 /* view-products */
 .books_template {
   max-width: 1270px;
-  
-  /* margin-top: 10px; */
-  /* margin-left: 10px; */
+ 
 }
 .book {
   display: flex;
   flex-direction: column;
   width: 250px;
   /* height: 120px; */
+  /* background-color: red; */
   padding: 15px;
   margin: 25px;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   transition: width 0.5s ease;
   /* background-color: blue; */
 }
@@ -171,7 +170,9 @@ body {
   transition: all 0.5s ease;
 }
 .book_img img {
+  
   width: 100%;
+  /* height: 320px; */
   object-fit: contain;
 }
 .book_img:hover{

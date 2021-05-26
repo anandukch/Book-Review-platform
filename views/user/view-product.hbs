@@ -59,11 +59,11 @@
 
 <script>
 
- function changeQuantity( bookId,userId, count) {
+  function changeQuantity( bookId,userId, count) {
    
         let thumb=document.querySelector('#thumb');
         let quantity = parseInt(document.getElementById(bookId).innerHTML)
-        console.log(quantity)
+        {{!-- console.log(quantity) --}}
         $.ajax({
             url: '/change-rate',
             data: {
@@ -77,18 +77,15 @@
             success: (response) => {
                 if (response.status) { 
  
-                    thumb.style.color='blue'
-                    location.reload()
-                   
+                    document.getElementById(bookId).innerHTML = quantity + 1
                     
-                   
+                    thumb.style.color='red';
+                 
                 } else {
-                  
-                  
-                  
+              
                   thumb.style.color='black';
-                  location.reload()
-                    
+                    document.getElementById(bookId).innerHTML = quantity - 1
+  
                 }
 
             }

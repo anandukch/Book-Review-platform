@@ -69,9 +69,7 @@ router.get("/view-product/:id", verifyLogin, async (req, res) => {
   let m = c[0].rating.filter((e) => {
     return e.comment != "";
   });
-  console.log(m);
-
-  // m = p[0];
+  
   let rate, status;
   let sum = 0;
   book.rating.forEach((r) => {
