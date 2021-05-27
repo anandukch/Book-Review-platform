@@ -3,7 +3,7 @@ var collection = require("../config/collection.js");
 const { ObjectID } = require("bson");
 
 module.exports = {
-  addBooks: (book, userid, imageSaver) => {
+  addBooks: (book, userid) => {
     book.userId = ObjectID(userid);
     let books = {
       ...book,
@@ -14,7 +14,7 @@ module.exports = {
       .insertOne(books)
       .then((data) => {
         console.log(data);
-        imageSaver(data.ops[0]._id);
+        
       });
   },
   getAllBooks: () => {

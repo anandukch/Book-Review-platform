@@ -5,7 +5,7 @@ var fileUpload=require('express-fileupload');
 var hbs=require('express-handlebars');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var env=require('dotenv')
+require('dotenv').config();
 
 var usersRouter = require('./routes/users');
 var app = express();
@@ -13,7 +13,7 @@ var session=require('express-session');
 // const mongoose=require('mongoose');
 // env var
 var db=require('./config/connection')
-env.config();
+
 // 
 
 // mongoose.connect(
@@ -33,11 +33,11 @@ app.engine('hbs', hbs({extname:'hbs', defaultLayout:'layout',layoutsDir:__dirnam
 
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.json({limit:'50mb'}));
+app.use(express.urlencoded({limit:'50mb', extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(fileUpload());
+app.use(fileUpload({useTempFiles:true}));
 app.use(session({secret:'Key',cookie:{maxAge:800000}}));
 db.connect((err)=>{
   if(err) console.log('errr  : '+err);

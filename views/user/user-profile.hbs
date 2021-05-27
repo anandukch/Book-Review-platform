@@ -35,7 +35,7 @@
      
       {{#each book}}
       <div class="book_cover">
-        <a href="/view-product/{{this._id}}"><img src="/book-images/{{this._id}}.jpg" alt="" id="imgView" style="width: 100px;height:auto"></a>
+        <a href="/view-product/{{this._id}}"><img src="{{this.img_link}}" alt="" id="imgView" style="width: 100px;height:auto"></a>
         
       </div>
       {{/each}}

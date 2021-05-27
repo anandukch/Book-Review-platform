@@ -4,6 +4,8 @@ const userHelpers = require("../helpers/userHelpers");
 var bookHelpers = require("../helpers/bookHelper");
 const { response } = require("express");
 const session = require("express-session");
+const { cloudinary } = require("../config/cloudinary");
+
 
 const verifyLogin = (req, res, next) => {
   if (req.session.loggedIn) {
@@ -119,18 +121,39 @@ router.get("/add-book", verifyLogin, (req, res) => {
   let user = req.session.user;
   res.render("user/add-book", { user });
 });
-router.post("/add-book", (req, res) => {
-  bookHelpers.addBooks(req.body, req.session.user._id, (id) => {
-    let image = req.files.image;
-    image.mv("./public/book-images/" + id + ".jpg", (err, done) => {
-      if (!err) {
-        res.redirect("/add-book");
-      } else {
-        console.log(err);
-      }
-    });
+// router.post("/add-book", async(req, res) => {
+//   const image = req.files.image;
+  
+//   const img_upload = await cloudinary.uploader.upload(image.tempFilePath, {
+//     upload_preset: "sdfonscz",
+//   });
+//   req.body.img_link = img_upload.url;
+
+//   bookHelpers.addBooks(req.body, req.session.user._id, (id) => {
+//     let image = req.files.image;
+//     // image.mv("./public/book-images/" + id + ".jpg", (err, done) => {
+//     //   if (!err) {
+//     //     res.redirect("/add-book");
+//     //   } else {
+//     //     console.log(err);
+//     //   }
+//     // });
+//   });
+// });
+router.post("/add-book", async (req, res) => {
+  console.log("start");
+
+  const image = req.files.image;
+  const img_upload = await cloudinary.uploader.upload(image.tempFilePath, {
+    upload_preset: "sdfonscz",
   });
+  req.body.img_link = img_upload.url;
+
+  bookHelpers.addBooks(req.body, req.session.user._id)
+    res.redirect('/add-book')
+  
 });
+
 router.get("/profile",verifyLogin, async (req, res) => {
   let book =await bookHelpers.getUserBooks(req.session.user._id);
   console.log(book);
