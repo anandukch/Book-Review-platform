@@ -62,12 +62,7 @@ router.get("/view-product/:id", verifyLogin, async (req, res) => {
 
   let c = await userHelpers.getcomments(req.params.id, req.session.user);
   console.log(c[0]);
-  // let m = [];
-  // let m = c[0].rating.map((e) => {
-  //     if(e.comment==''||undefined){return}
-  //     else{return e;}
-
-  // });
+  
   let m = c[0].rating.filter((e) => {
     return e.comment != "";
   });
@@ -121,25 +116,7 @@ router.get("/add-book", verifyLogin, (req, res) => {
   let user = req.session.user;
   res.render("user/add-book", { user });
 });
-// router.post("/add-book", async(req, res) => {
-//   const image = req.files.image;
-  
-//   const img_upload = await cloudinary.uploader.upload(image.tempFilePath, {
-//     upload_preset: "sdfonscz",
-//   });
-//   req.body.img_link = img_upload.url;
 
-//   bookHelpers.addBooks(req.body, req.session.user._id, (id) => {
-//     let image = req.files.image;
-//     // image.mv("./public/book-images/" + id + ".jpg", (err, done) => {
-//     //   if (!err) {
-//     //     res.redirect("/add-book");
-//     //   } else {
-//     //     console.log(err);
-//     //   }
-//     // });
-//   });
-// });
 router.post("/add-book", async (req, res) => {
   console.log("start");
 
