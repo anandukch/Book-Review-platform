@@ -14,16 +14,6 @@ Book street app lets ,
 -   Can edit account details,
 
 
-### Team Members
-
-1. [Anandu.S](https://github.com/anandukch)
-2. [Adarsh P Sunil](https://github.com/adarshpsunil)
-
-### Team Id
-
-**BFH/recQCUy2L7nFwRofa/2021**
-
-
 
 ### Where is the app
 
